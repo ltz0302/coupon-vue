@@ -52,32 +52,27 @@
       <el-form-item label="失效日期" required>
         <el-col :span="11">
           <el-form-item prop="date">
-            <el-date-picker type="date" placeholder="选择日期" v-model="ruleForm.date1"
+            <el-date-picker type="date" placeholder="选择日期" v-model="ruleForm.date"
                             style="width: 100%;"></el-date-picker>
           </el-form-item>
         </el-col>
-        <!--      <el-col class="line" :span="2">-</el-col>-->
-        <!--      <el-col :span="11">-->
-        <!--        <el-form-item prop="date2">-->
-        <!--          <el-time-picker placeholder="选择时间" v-model="ruleForm.date2" style="width: 100%;"></el-time-picker>-->
-        <!--        </el-form-item>-->
-        <!--      </el-col>-->
+
       </el-form-item>
 
-      <el-form-item label="优惠额度" >
+      <el-form-item label="优惠额度">
         <el-input v-model="ruleForm.quota"></el-input>
       </el-form-item>
-      <el-form-item label="基准" >
+      <el-form-item label="基准">
         <el-input v-model="ruleForm.base"></el-input>
       </el-form-item>
 
-      <el-form-item label="领取张数限制" >
+      <el-form-item label="领取张数限制">
         <el-input v-model="ruleForm.limitation"></el-input>
       </el-form-item>
-      <el-form-item label="领取省份限制" >
+      <el-form-item label="领取省份限制">
         <el-input v-model="ruleForm.province"></el-input>
       </el-form-item>
-      <el-form-item label="领取城市限制" >
+      <el-form-item label="领取城市限制">
         <el-input v-model="ruleForm.city"></el-input>
       </el-form-item>
 
@@ -107,16 +102,8 @@
   export default {
     data() {
       return {
-        ruleForm: {
-          name: '',
-          region: '',
-          date1: '',
-          date2: '',
-          delivery: false,
-          type: [],
-          resource: '',
-          desc: ''
-        },
+        ruleForm: {},
+
         rules: {
           name: [
             {required: true, message: '请输入优惠券名称', trigger: 'blur'},
@@ -152,7 +139,14 @@
       submitForm(formName) {
         this.$refs[formName].validate((valid) => {
           if (valid) {
-            alert('submit!');
+            this.axios
+              .post('127.0.0.1:7001/coupon-template/template/build', this.ruleForm)
+              .then(response => (
+                this.$router.push('/')
+              ))
+              .catch(function (error) { // 请求失败处理
+                console.log(error);
+              });
           } else {
             console.log('error submit!!');
             return false;

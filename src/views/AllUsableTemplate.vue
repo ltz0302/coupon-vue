@@ -66,7 +66,14 @@
   export default {
     methods: {
       handleClick(row) {
-        console.log(row);
+        // console.log(row);
+        // this.$router.push({
+        //   path:"/coupon-template/template/info",
+        //   query:{
+        //     id:row.id
+        //   }
+        // })
+        // this.axios.get()
       }
     },
     data() {

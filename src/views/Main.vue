@@ -12,7 +12,7 @@
             <span>优惠券模板服务</span>
           </template>
           <el-menu-item-group>
-            <el-menu-item index="1-1"><router-link style=" text-decoration: none" to="/coupon-template/template/build">创建优惠券模板</router-link> </el-menu-item>
+            <el-menu-item index="1-1"><router-link style=" text-decoration: none" to="/template/build">创建优惠券模板</router-link> </el-menu-item>
             <el-menu-item index="1-2"><router-link style=" text-decoration: none" to="/coupon-template/template/sdk/all">优惠券模板列表</router-link></el-menu-item>
           </el-menu-item-group>
         </el-submenu>
@@ -26,8 +26,8 @@
             <span>优惠券分发服务</span>
           </template>
           <el-menu-item-group>
-            <el-menu-item index="2-1">用户可以领取的优惠券</el-menu-item>
-            <el-menu-item index="2-2">用户拥有的优惠券</el-menu-item>
+            <el-menu-item index="2-1">可领取的优惠券</el-menu-item>
+            <el-menu-item index="2-2">拥有的优惠券</el-menu-item>
           </el-menu-item-group>
         </el-submenu>
       </el-menu>
