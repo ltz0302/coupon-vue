@@ -1,11 +1,10 @@
 import Vue from 'vue'
 import Router from 'vue-router'
 
-import Main from '../views/Main'
-import AllUsableTemplate from "../views/AllUsableTemplate";
-import BuildTemplateInfo from "../views/BuildTemplateInfo";
-import FindAvailableTemplate from "../views/FindAvailableTemplate";
+import main from '../views/main'
 import buildTemplate from "../views/template/buildTemplate";
+import allTemplate from "../views/template/allTemplate";
+import TemplateInfo from "../views/template/TemplateInfo";
 Vue.use(Router)
 
 export default new Router({
@@ -14,28 +13,22 @@ export default new Router({
     {
       path: '/',
       name: 'main',
-      component: Main
+      component: main
     },
     {
       path: '/template/build',
       name: 'buildTemplate',
       component: buildTemplate
-    }
-    ,
-    {
-      path: '/coupon-template/template/sdk/all',
-      name: 'allUsableTemplate',
-      component: AllUsableTemplate
     },
     {
-      path: '/coupon-template/template/info',
-      name: 'buildTemplateInfo',
-      component: BuildTemplateInfo
+      path: '/template/list',
+      name: 'allTemplate',
+      component: allTemplate
     },
     {
-      path: '/coupon-distribution/template',
-      name: 'findAvailableTemplate',
-      component: FindAvailableTemplate
+      path: '/template/info',
+      name: 'TemplateInfo',
+      component: TemplateInfo
     },
   ]
 })

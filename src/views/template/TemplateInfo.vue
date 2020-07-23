@@ -50,33 +50,31 @@
       </tr>
     </table>
 
-    <!--    <div>-->
     <div class="title">
       <h2>优惠券模板规则信息</h2>
     </div>
     <table style="width: 80%" class="myTable">
       <tr>
         <td>过期规则</td>
-        <td>{{info.expiration}}</td>
+        <td>{{info.rule.expiration}}</td>
       </tr>
       <tr>
         <td>折扣规则</td>
-        <td>{{info.discount}}</td>
+        <td>{{info.rule.discount}}</td>
       </tr>
       <tr>
         <td>领取限制张数</td>
-        <td>{{info.limitation}}</td>
+        <td>{{info.rule.limitation}}</td>
       </tr>
       <tr>
         <td>使用规则</td>
-        <td>{{info.usage}}</td>
+        <td>{{info.rule.usage}}</td>
       </tr>
       <tr>
         <td>权重</td>
-        <td>{{info.weight}}</td>
+        <td>{{info.rule.weight}}</td>
       </tr>
     </table>
-    <!--    </div>-->
 
   </div>
 </template>
@@ -84,28 +82,22 @@
   export default {
     data(){
       return{
-          info:{
-            id: 1,
-            availabele: "可用",
-            name: "",
-            desc: "",
-            category: "",
-            productLine: "",
-            count: "",
-            createTime: "",
-            userId:"",
-            key: "12",
-            target:"",
-            expiration: "",
-            discount: "",
-            limitation:"",
-            usage:"",
-            weight:""
-          }
+        info: null
       }
+    },
+
+    mounted() {
+      const _this=this
+      this.axios
+        .get('http://127.0.0.1:7001/coupon-template/template/info', {params:{id:_this.$route.query.id}} )
+        .then(function (response) {
+            _this.info = response.data.data;
+          }
+        )
+        .catch(function (error) { // 请求失败处理
+          console.log(error);
+        });
     }
-
-
   }
 </script>
 
