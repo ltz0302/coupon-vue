@@ -21,18 +21,18 @@
               </el-menu-item>
             </el-menu-item-group>
           </el-submenu>
-          <!--        <el-menu-item index="2">-->
-          <!--          <i class="el-icon-menu"></i>-->
-          <!--          <span slot="title">优惠券分发服务</span>-->
-          <!--        </el-menu-item>-->
           <el-submenu index="2">
             <template slot="title">
               <i class="el-icon-location"></i>
               <span>优惠券分发服务</span>
             </template>
             <el-menu-item-group>
-              <el-menu-item index="2-1">可领取的优惠券</el-menu-item>
-              <el-menu-item index="2-2">拥有的优惠券</el-menu-item>
+              <el-menu-item index="2-1">
+                <router-link style=" text-decoration: none" to="/coupon/list">优惠券列表</router-link>
+              </el-menu-item>
+              <el-menu-item index="2-2">
+                <router-link style=" text-decoration: none" to="/coupon/template">可领取的优惠券</router-link>
+              </el-menu-item>
             </el-menu-item-group>
           </el-submenu>
         </el-menu>

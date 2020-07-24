@@ -5,6 +5,10 @@ import main from '../views/main'
 import buildTemplate from "../views/template/buildTemplate";
 import allTemplate from "../views/template/allTemplate";
 import TemplateInfo from "../views/template/TemplateInfo";
+import allCoupons from "../views/distribution/allCoupons";
+import usableTemplate from "../views/distribution/usableTemplate";
+import acquireTemplate from "../views/distribution/acquireTemplate";
+
 Vue.use(Router)
 
 export default new Router({
@@ -30,5 +34,20 @@ export default new Router({
       name: 'TemplateInfo',
       component: TemplateInfo
     },
+    {
+      path: '/coupon/list',
+      name: 'allCoupons',
+      component: allCoupons
+    },
+    {
+      path: '/coupon/template',
+      name: 'usableTemplate',
+      component: usableTemplate
+    },
+    {
+      path: '/coupon/acquire',
+      name: 'acquireTemplate',
+      component: acquireTemplate
+    }
   ]
 })

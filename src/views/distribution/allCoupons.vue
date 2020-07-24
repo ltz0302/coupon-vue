@@ -1,9 +1,11 @@
 <template>
   <div>
     <el-menu :default-active="activeIndex" class="el-menu-demo" mode="horizontal">
-      <el-menu-item index="1" @click="handleClickUsable()">可用优惠券模板</el-menu-item>
-      <el-menu-item index="2" @click="handleClickExpired()">过期优惠券模板</el-menu-item>
+      <el-menu-item index="1" @click="handleClickUsable()">可用优惠券</el-menu-item>
+      <el-menu-item index="2" @click="handleClickUsed()">已用优惠券</el-menu-item>
+      <el-menu-item index="3" @click="handleClickExpired()">过期优惠券</el-menu-item>
     </el-menu>
+    <div class="line"></div>
     <el-table
       :data="tableData"
       stripe
@@ -13,48 +15,24 @@
         label="id">
       </el-table-column>
       <el-table-column
+        prop="templateId"
+        label="对应的模板id">
+      </el-table-column>
+      <el-table-column
         prop="name"
-        label="名称">
-      </el-table-column>
-      <el-table-column
-        prop="desc"
-        label="描述">
-      </el-table-column>
-      <el-table-column
-        prop="category"
-        label="类型">
-      </el-table-column>
-      <el-table-column
-        prop="productLine"
-        label="产品线">
-      </el-table-column>
-      <el-table-column
-        prop="count"
-        label="个数">
-      </el-table-column>
-      <el-table-column
-        prop="createTime"
-        label="创建时间">
+        label="优惠券名称">
       </el-table-column>
       <el-table-column
         prop="userId"
-        label="创建用户">
+        label="用户id">
       </el-table-column>
       <el-table-column
-        prop="key"
-        label="编码">
+        prop="couponCode"
+        label="优惠券码">
       </el-table-column>
       <el-table-column
-        prop="target"
-        label="目标用户">
-      </el-table-column>
-      <el-table-column
-        fixed="right"
-        label="操作"
-        width="100">
-        <template slot-scope="scope">
-          <el-button @click="handleClick(scope.row)" type="text" size="small">详情</el-button>
-        </template>
+        prop="assignTime"
+        label="领取时间">
       </el-table-column>
     </el-table>
 
@@ -68,7 +46,19 @@
       handleClickUsable(){
         const _this=this
         this.axios
-          .get('http://127.0.0.1:7001/coupon-template/template/usable')
+          .get('http://127.0.0.1:7002/coupon-distribution/coupons',{params: {userId: 123, status: 1}})
+          .then(function (response) {
+              _this.tableData = response.data.data;
+            }
+          )
+          .catch(function (error) { // 请求失败处理
+            console.log(error);
+          });
+      },
+      handleClickUsed(){
+        const _this=this
+        this.axios
+          .get('http://127.0.0.1:7002/coupon-distribution/coupons',{params: {userId: 123, status: 2}})
           .then(function (response) {
               _this.tableData = response.data.data;
             }
@@ -80,7 +70,7 @@
       handleClickExpired(){
         const _this=this
         this.axios
-          .get('http://127.0.0.1:7001/coupon-template/template/expired')
+          .get('http://127.0.0.1:7002/coupon-distribution/coupons',{params: {userId: 123, status: 3}})
           .then(function (response) {
               _this.tableData = response.data.data;
             }
@@ -89,14 +79,6 @@
             console.log(error);
           });
       },
-      handleClick(row) {
-        this.$router.push({
-          path:"/template/info",
-          query:{
-            id:row.id
-          }
-        })
-      }
     },
     data() {
       return {
@@ -107,9 +89,10 @@
     mounted() {
       const _this=this
       this.axios
-        .get('http://127.0.0.1:7001/coupon-template/template/usable')
+        // 用于测试的用户id固定为123
+        .get('http://127.0.0.1:7002/coupon-distribution/coupons',{params: {userId: 123, status: 1}})
         .then(function (response) {
-          _this.tableData = response.data.data;
+            _this.tableData = response.data.data;
           }
         )
         .catch(function (error) { // 请求失败处理
