@@ -10,7 +10,7 @@
       </tr>
       <tr>
         <td>可用状态</td>
-        <td>{{info.availabele}}</td>
+        <td>{{info.available}}</td>
       </tr>
       <tr>
         <td>名称</td>
@@ -56,23 +56,19 @@
     <table style="width: 80%" class="myTable">
       <tr>
         <td>过期规则</td>
-        <td>{{info.rule.expiration}}</td>
+        <td>{{info.expiration}}</td>
       </tr>
       <tr>
         <td>折扣规则</td>
-        <td>{{info.rule.discount}}</td>
+        <td>{{info.discount}}</td>
       </tr>
       <tr>
         <td>领取限制张数</td>
-        <td>{{info.rule.limitation}}</td>
+        <td>{{info.limitation}}</td>
       </tr>
       <tr>
         <td>使用规则</td>
-        <td>{{info.rule.usage}}</td>
-      </tr>
-      <tr>
-        <td>权重</td>
-        <td>{{info.rule.weight}}</td>
+        <td>{{info.usage}}</td>
       </tr>
     </table>
 
@@ -80,16 +76,41 @@
 </template>
 <script>
   export default {
-    data(){
-      return{
-        info: null
+    data() {
+      return {
+        info: {
+          name: null,
+          desc: null,
+          category: null,
+          productLine: null,
+          count: null,
+          userId: null,
+          target: null,
+          rule: {
+            expiration: {
+              period: null,
+              gap: null,
+              deadline: null
+            },
+            discount: {
+              quota: null,
+              base: null
+            },
+            limitation: null,
+            usage: {
+              province: null,
+              city: null,
+              goodsType: null
+            }
+          }
+        }
       }
     },
 
     mounted() {
-      const _this=this
+      const _this = this
       this.axios
-        .get('http://127.0.0.1:7001/coupon-template/template/info', {params:{id:_this.$route.query.id}} )
+        .get('http://127.0.0.1:7001/coupon-template/template/info', {params: {id: _this.$route.query.id}})
         .then(function (response) {
             _this.info = response.data.data;
           }

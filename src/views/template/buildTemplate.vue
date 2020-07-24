@@ -81,9 +81,6 @@
           <el-option label="全品类" value="5"></el-option>
         </el-select>
       </el-form-item>
-      <el-form-item label="权重" prop="rule.weight">
-        <el-input v-model="ruleForm.rule.weight"></el-input>
-      </el-form-item>
       <el-form-item>
         <el-button type="primary" @click="submitForm('ruleForm')">提交</el-button>
         <el-button @click="quit()">取消</el-button>
@@ -122,8 +119,7 @@
               province: null,
               city: null,
               goodsType: null
-            },
-            weight: null
+            }
           }
         },
 
