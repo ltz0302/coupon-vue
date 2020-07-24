@@ -1,5 +1,6 @@
 <template>
 <div>
+  <Home></Home>
   <el-table
     :data="tableData"
     stripe
@@ -39,7 +40,9 @@
 </template>
 
 <script>
+  import Home from "../../components/Home";
   export default {
+    components: {Home},
     methods: {
       handleClick(row) {
         this.$router.push({

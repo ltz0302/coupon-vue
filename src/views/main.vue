@@ -42,7 +42,9 @@
 </template>
 
 <script>
+  import Home from "../components/Home";
   export default {
+    components: {Home},
     methods: {
       handleOpen(key, keyPath) {
         console.log(key, keyPath);

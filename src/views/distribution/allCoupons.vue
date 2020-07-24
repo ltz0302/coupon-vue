@@ -1,5 +1,6 @@
 <template>
   <div>
+    <Home></Home>
     <el-menu :default-active="activeIndex" class="el-menu-demo" mode="horizontal">
       <el-menu-item index="1" @click="handleClickUsable()">可用优惠券</el-menu-item>
       <el-menu-item index="2" @click="handleClickUsed()">已用优惠券</el-menu-item>
@@ -41,7 +42,9 @@
 </template>
 
 <script>
+  import Home from "../../components/Home";
   export default {
+    components: {Home},
     methods: {
       handleClickUsable(){
         const _this=this

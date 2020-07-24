@@ -1,5 +1,6 @@
 <template>
   <div>
+    <Home></Home>
     <h3>创建优惠券模板</h3>
     <el-form :model="ruleForm" :rules="rules" ref="ruleForm" label-width="100px" class="demo-ruleForm">
       <el-form-item label="优惠券名称" prop="name">
@@ -92,7 +93,9 @@
 </template>
 
 <script>
+  import Home from "../../components/Home";
   export default {
+    components: {Home},
     data() {
       return {
         ruleForm: {

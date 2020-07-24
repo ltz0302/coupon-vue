@@ -1,5 +1,6 @@
 <template>
   <div>
+    <Home></Home>
     <div class="title">
       <h2>优惠券模板基本信息</h2>
     </div>
@@ -39,7 +40,9 @@
   </div>
 </template>
 <script>
+  import Home from "../../components/Home";
   export default {
+    components: {Home},
     methods: {
       handleClick() {
         let code
