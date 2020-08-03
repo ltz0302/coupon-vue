@@ -4,9 +4,7 @@
       <el-col>
         <el-menu
           default-active="2"
-          class="el-menu-vertical-demo"
-          @open="handleOpen"
-          @close="handleClose">
+          class="el-menu-vertical-demo">
           <el-submenu index="1">
             <template slot="title">
               <i class="el-icon-location"></i>
@@ -45,14 +43,6 @@
   import Home from "../components/Home";
   export default {
     components: {Home},
-    methods: {
-      handleOpen(key, keyPath) {
-        console.log(key, keyPath);
-      },
-      handleClose(key, keyPath) {
-        console.log(key, keyPath);
-      }
-    }
   }
 </script>
 

@@ -60,10 +60,10 @@
         tableData: null
       }
     },
-    mounted() {
+    created() {
       const _this=this
       this.axios
-        .get('http://127.0.0.1:7002/coupon-distribution/template',{params: {userId: 123}})
+        .get('http://127.0.0.1:9000/ltz/coupon-distribution/template',{params: {userId: 123}})
         .then(function (response) {
             _this.tableData = response.data.data;
           }

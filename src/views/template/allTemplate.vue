@@ -65,13 +65,14 @@
 
 <script>
   import Home from "../../components/Home";
+
   export default {
     components: {Home},
     methods: {
-      handleClickUsable(){
-        const _this=this
+      handleClickUsable() {
+        const _this = this
         this.axios
-          .get('http://127.0.0.1:7001/coupon-template/template/usable')
+          .get('http://127.0.0.1:9000/ltz/coupon-template/template/usable')
           .then(function (response) {
               _this.tableData = response.data.data;
             }
@@ -80,10 +81,10 @@
             console.log(error);
           });
       },
-      handleClickExpired(){
-        const _this=this
+      handleClickExpired() {
+        const _this = this
         this.axios
-          .get('http://127.0.0.1:7001/coupon-template/template/expired')
+          .get('http://127.0.0.1:9000/ltz/coupon-template/template/expired')
           .then(function (response) {
               _this.tableData = response.data.data;
             }
@@ -94,9 +95,9 @@
       },
       handleClick(row) {
         this.$router.push({
-          path:"/template/info",
-          query:{
-            id:row.id
+          path: "/template/info",
+          query: {
+            id: row.id
           }
         })
       }
@@ -107,12 +108,19 @@
         tableData: null
       }
     },
-    mounted() {
-      const _this=this
+    created() {
+      let code
+      const _this = this
       this.axios
-        .get('http://127.0.0.1:7001/coupon-template/template/usable')
+        .get('http://127.0.0.1:9000/ltz/coupon-template/template/usable')
         .then(function (response) {
-          _this.tableData = response.data.data;
+            code = response.data.code
+            if (code === 0) {
+              _this.tableData = response.data.data;
+            }
+            else if(code === -1){
+              window.alert("错误")
+            }
           }
         )
         .catch(function (error) { // 请求失败处理

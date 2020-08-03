@@ -49,7 +49,7 @@
       handleClickUsable(){
         const _this=this
         this.axios
-          .get('http://127.0.0.1:7002/coupon-distribution/coupons',{params: {userId: 123, status: 1}})
+          .get('http://127.0.0.1:9000/ltz/coupon-distribution/coupons',{params: {userId: 123, status: 1}})
           .then(function (response) {
               _this.tableData = response.data.data;
             }
@@ -61,7 +61,7 @@
       handleClickUsed(){
         const _this=this
         this.axios
-          .get('http://127.0.0.1:7002/coupon-distribution/coupons',{params: {userId: 123, status: 2}})
+          .get('http://127.0.0.1:9000/ltz/coupon-distribution/coupons',{params: {userId: 123, status: 2}})
           .then(function (response) {
               _this.tableData = response.data.data;
             }
@@ -73,7 +73,7 @@
       handleClickExpired(){
         const _this=this
         this.axios
-          .get('http://127.0.0.1:7002/coupon-distribution/coupons',{params: {userId: 123, status: 3}})
+          .get('http://127.0.0.1:9000/ltz/coupon-distribution/coupons',{params: {userId: 123, status: 3}})
           .then(function (response) {
               _this.tableData = response.data.data;
             }
@@ -89,11 +89,11 @@
         tableData: null
       }
     },
-    mounted() {
+    created() {
       const _this=this
       this.axios
         // 用于测试的用户id固定为123
-        .get('http://127.0.0.1:7002/coupon-distribution/coupons',{params: {userId: 123, status: 1}})
+        .get('http://127.0.0.1:9000/ltz/coupon-distribution/coupons',{params: {userId: 123, status: 1}})
         .then(function (response) {
             _this.tableData = response.data.data;
           }

@@ -77,6 +77,7 @@
 </template>
 <script>
   import Home from "../../components/Home";
+
   export default {
     components: {Home},
     data() {
@@ -110,12 +111,19 @@
       }
     },
 
-    mounted() {
+    created() {
+      let code
       const _this = this
       this.axios
-        .get('http://127.0.0.1:7001/coupon-template/template/info', {params: {id: _this.$route.query.id}})
+        .get('http://127.0.0.1:9000/ltz/coupon-template/template/info', {params: {id: _this.$route.query.id}})
         .then(function (response) {
-            _this.info = response.data.data;
+            code = response.data.code
+            if (code === 0) {
+              _this.info = response.data.data;
+            } else if (code === -1) {
+              window.alert("数据不存在")
+              _this.$router.push('/template/list')
+            }
           }
         )
         .catch(function (error) { // 请求失败处理

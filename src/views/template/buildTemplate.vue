@@ -199,7 +199,7 @@
           if (valid) {
             const _this = this
             this.axios
-              .post('http://127.0.0.1:7001/coupon-template/template/build', this.ruleForm)
+              .post('http://127.0.0.1:9000/ltz/coupon-template/template/build', this.ruleForm)
               .then(function (response) {
                 code = response.data.code
                 if(code === -1){
